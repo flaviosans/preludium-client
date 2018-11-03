@@ -1,0 +1,8 @@
+<mat-toolbar-row>
+  <button mat-button [routerLink]="['/eventos/novo']" >Novo evento</button>
+</mat-toolbar-row>
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Próximos"> 
+    <app-eventos-list (eventoSelecionado)="editar($event)" (eventoExcluido)="excluirDaLista($event)"></app-eventos-list>  
+  </mat-tab>
+</mat-tab-group>

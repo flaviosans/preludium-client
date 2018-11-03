@@ -1,0 +1,12 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>MusiControl</span>
+    <span class="espaco"></span>
+    <a [routerLink]="['/dashboard']"><mat-icon class="icone">home</mat-icon></a>
+    <a [routerLink]="['/eventos']"><mat-icon class="icone">today</mat-icon></a>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row *ngIf="itens">
+    <button mat-button  *ngFor="let item of itens" [routerLink]="[item.link]" >{{item.nome}}</button>
+  </mat-toolbar-row>
+</mat-toolbar>

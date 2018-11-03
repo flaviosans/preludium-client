@@ -1,0 +1,20 @@
+<mat-toolbar-row >
+  <button mat-button [routerLink]="['/eventos/']" >Todos os eventos</button>
+</mat-toolbar-row>
+<form>
+  <mat-form-field>
+    <input matInput name="titulo" placeholder="Título" [(ngModel)]="evento.titulo">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput name="descricao" placeholder="Descrição" [(ngModel)]="evento.descricao"></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="date" name="data" placeholder="Data"[ngModel]="evento.data | date: 'yyyy-MM-dd'" (ngModelChange)="evento.data=($event)">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="valor" placeholder="Valor"[(ngModel)]="evento.valor">
+  </mat-form-field>
+</form>
+<mat-toolbar-row>
+  <button mat-button (click)="salvar()">Salvar evento</button>
+</mat-toolbar-row>

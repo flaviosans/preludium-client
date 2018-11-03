@@ -1,0 +1,16 @@
+<mat-list role="list">
+  <mat-list-item *ngFor="let evento of eventos" role="listitem">
+    <h2 mat-line>{{evento.data | date: 'dd/MM/yy'}}</h2>
+    <small mat-line>{{evento.data | date: 'EEEE'}}</small>
+    <p mat-line>{{evento.titulo}}</p>
+    <button mat-button (click)="selecionar(evento)" >Selecionar</button>
+    <button mat-button (click)="excluir(evento)" >Excluir</button>
+  </mat-list-item>
+</mat-list>
+<ng-template #semEventos>
+  <mat-list>
+    <mat-list-item>
+      Sem eventos
+    </mat-list-item>
+  </mat-list>
+</ng-template>
