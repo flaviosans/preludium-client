@@ -14,12 +14,13 @@ import { EventosListComponent } from './eventos/eventos-list/eventos-list.compon
 import { EventosFormComponent } from './eventos/eventos-form/eventos-form.component';
 import { EventosEditComponent } from './eventos/eventos-edit/eventos-edit.component';
 import { EventosCreateComponent } from './eventos/eventos-create/eventos-create.component';
-import { LoginComponent} from "./login/login.component";
+import { LoginComponent} from "./auth/login/login.component";
 import { RegisterComponent } from './auth/register/register.component';
 import { UserComponent } from './user/user.component';
 import { ErrorInterceptor, JwtInterceptor } from "./helpers";
 import { ConfigComponent } from './config/config.component';
-import {AuthGuard} from "./guards/auth.guard";
+import { AuthGuard } from "./guards/auth.guard";
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {AuthGuard} from "./guards/auth.guard";
     LoginComponent,
     RegisterComponent,
     UserComponent,
-    ConfigComponent
+    ConfigComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
@@ -44,10 +46,12 @@ import {AuthGuard} from "./guards/auth.guard";
     MaterialModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'eventos/editar/:id', component: EventosEditComponent, canActivate: [AuthGuard] },
       { path: 'eventos/novo', component: EventosCreateComponent, canActivate: [AuthGuard] },
-      { path: 'eventos', component: EventosIndexComponent, canActivate: [AuthGuard] }
+      { path: 'eventos', component: EventosIndexComponent, canActivate: [AuthGuard] },
+      { path: 'index', component: IndexComponent }
     ])
   ],
   providers: [
