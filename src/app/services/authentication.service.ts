@@ -1,12 +1,13 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { User } from "../models/user";
-import { Router } from "@angular/router"
+import { User } from "../interfaces/user";
+import { Router } from "@angular/router";
+import { environment } from "../../environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    url: string = "http://localhost:8000/api/";
+    url: string = environment.apiUrl;
 
     constructor(private http: HttpClient,
                 private router: Router) { }
@@ -19,7 +20,6 @@ export class AuthenticationService {
     }
 
     logout() {
-        // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.router.navigate(['/login'])
 
