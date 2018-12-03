@@ -9,18 +9,22 @@ import { Router } from '@angular/router';
 })
 export class EventosIndexComponent implements OnInit {
   evento: Evento;
+  q: string;
+  hoje: Date = new Date();
+  proximosEventos: number;
+  eventosAnteriores: number;
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
-
+  ngOnInit(){
+    
   }
 
   editar(evento: Evento): void{
     this.router.navigate(['/eventos/editar', evento.id]);
   }
 
-  excluirDaLista(evento: Evento): void{
-
+  pesquisar(q: string): void {
+    this.q = q;
   }
 }
