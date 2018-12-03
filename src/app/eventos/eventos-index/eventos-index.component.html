@@ -2,26 +2,23 @@
   <button mat-button [routerLink]="['/eventos/novo']" ><mat-icon>add</mat-icon> Novo evento</button>
 </mat-toolbar-row>
 <mat-form-field>
-  <input (keyup)="pesquisar($event.target.value)" matInput name="Pesquisar data" placeholder="Data">
+  <input (keyup)="pesquisar($event.target.value)" matInput name="q" placeholder="Pesquisar eventos">
 </mat-form-field>
 <mat-tab-group mat-align-tabs="center">
-  <mat-tab label="Anteriores ({{eventosAnteriores}})">
-    <app-eventos-list
-            [tempo]="'anteriores'"
-            (eventoSelecionado)="editar($event)"
-            (listaCarregada)="eventosAnteriores = $event"
-            [q]="q">
-
-    </app-eventos-list>
-  </mat-tab>
   <mat-tab label="Próximos ({{proximosEventos}})">
     <app-eventos-list
             [tempo]="'proximos'"
             (eventoSelecionado)="editar($event)"
             (listaCarregada)="proximosEventos = $event"
             [q]="q">
-
     </app-eventos-list>
   </mat-tab>
-
+  <mat-tab label="Anteriores ({{eventosAnteriores}})">
+    <app-eventos-list
+            [tempo]="'anteriores'"
+            (eventoSelecionado)="editar($event)"
+            (listaCarregada)="eventosAnteriores = $event"
+            [q]="q">
+    </app-eventos-list>
+  </mat-tab>
 </mat-tab-group>
