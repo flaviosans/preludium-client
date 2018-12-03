@@ -47,7 +47,8 @@ import { IndexComponent } from './index/index.component';
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'dashboard', component: DashboardComponent },
+      { path: '', component: AppComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'eventos/editar/:id', component: EventosEditComponent, canActivate: [AuthGuard] },
       { path: 'eventos/novo', component: EventosCreateComponent, canActivate: [AuthGuard] },
       { path: 'eventos', component: EventosIndexComponent, canActivate: [AuthGuard] },
