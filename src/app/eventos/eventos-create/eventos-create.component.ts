@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Evento } from 'src/app/interfaces/evento';
 import { EventoService } from 'src/app/services/evento.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eventos-create',
@@ -9,18 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./eventos-create.component.css']
 })
 export class EventosCreateComponent implements OnInit {
+  @Output() eventoSalvo = new EventEmitter();
 
   constructor(
-    private eventoService: EventoService,
-    private router: Router) { }
+    private eventoService: EventoService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   salvar(evento: Evento){
-    this.eventoService.salvarEvento(evento).subscribe(e => {
-      this.router.navigate(['/eventos']);
+    this.eventoService.salvarEvento(evento).subscribe(_ => {
+      this.eventoSalvo.emit();
     })
   }
-
 }

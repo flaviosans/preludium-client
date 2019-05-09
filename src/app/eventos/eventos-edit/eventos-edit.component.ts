@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EventoService } from 'src/app/services/evento.service';
 import { Evento } from 'src/app/interfaces/evento';
 
@@ -9,23 +8,19 @@ import { Evento } from 'src/app/interfaces/evento';
   styleUrls: ['./eventos-edit.component.css']
 })
 export class EventosEditComponent implements OnInit {
-  evento: Evento;
+  @Input() evento: Evento;
+  @Output() eventoSalvo = new EventEmitter();
   
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
     private eventoService: EventoService) { }
 
   ngOnInit() {
-    var eventoId = +this.activatedRoute.snapshot.params["id"];
-    this.eventoService.obterEvento(eventoId).subscribe(e => {
-      this.evento = e;
-    });
+
   }
 
   salvar(evento: Evento){
-    this.eventoService.alterarEvento(evento).subscribe(e => {
-      this.router.navigate(['/eventos']);
+    this.eventoService.alterarEvento(evento).subscribe(_ => {
+      this.eventoSalvo.emit();
     });
   }
 

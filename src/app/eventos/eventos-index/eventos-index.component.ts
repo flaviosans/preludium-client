@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Evento } from 'src/app/interfaces/evento';
-import { Router } from '@angular/router';
+import { Evento } from '../../interfaces/evento';
 
 @Component({
   selector: 'app-eventos-index',
@@ -14,17 +13,24 @@ export class EventosIndexComponent implements OnInit {
   proximosEventos: number;
   eventosAnteriores: number;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
-  ngOnInit(){
-    
-  }
+  ngOnInit(){ }
 
   editar(evento: Evento): void{
-    this.router.navigate(['/eventos/editar', evento.id]);
+    this.evento = evento;
   }
 
   pesquisar(q: string): void {
     this.q = q;
+  }
+
+  atualizar(){
+    this.evento = <Evento>{};
+    this.pesquisar('');
+  }
+
+  eventoExiste(): boolean{
+    return !!this.evento && !!this.evento.id;
   }
 }

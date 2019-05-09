@@ -1,15 +1,34 @@
-<mat-list role="list">
-  <mat-list-item *ngFor="let evento of eventos" role="listitem">
-    <h2 mat-line>{{evento.data | date: 'dd/MM/yy - EE'}}</h2>
-    <p mat-line>{{evento.titulo}}</p>
-    <button mat-button (click)="selecionar(evento)"><mat-icon>edit</mat-icon></button>
-    <button mat-button (click)="excluir(evento)"><mat-icon>delete</mat-icon></button>
-  </mat-list-item>
-</mat-list>
-<ng-template #semEventos>
-  <mat-list>
-    <mat-list-item>
-      Sem eventos
-    </mat-list-item>
-  </mat-list>
-</ng-template>
+<!--Card-->
+<div class="card card-cascade narrower mt-5">
+    <!--Card image-->
+    <div class="view gradient-card-header blue darken-2">
+        <h4 class="h4-responsive text-white">{{tituloJanela}}</h4>
+    </div>
+    <!--/Card image-->
+    <!--Card content-->
+    <div class="card-body">
+        <table class="table">
+            <thead class="blue-grey lighten-4">
+                <tr>
+                    <th>Selecionar</th>
+                    <th>Data</th>
+                    <th>Evento</th>
+                    <th>Valor</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let evento of eventos">
+                    <th scope="row" (click)="selecionar(evento)">Selecionar</th>
+                    <td>{{evento.data | date: 'dd/MM/yy - EEEE'}}</td>
+                    <td>{{evento.titulo}}</td>
+                    <td>{{evento.valor}}</td>
+                    <td (click)="excluir(evento)">Excluir</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--/.Card content-->
+</div>
+<!--/.Card-->
+

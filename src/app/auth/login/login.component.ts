@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authenticationService.login(this.user)
         .pipe(first())
-        .subscribe(data => {
+        .subscribe(_ => {
           this.router.navigate(['/eventos']);
         }, error => {
           this.error = error;

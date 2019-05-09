@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {User} from "../../models/user";
-import {first} from "rxjs/operators";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -14,8 +12,7 @@ export class RegisterComponent implements OnInit {
   user: User;
   error: string;
 
-  constructor(private authenticationService: AuthenticationService,
-              private router: Router) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.user = <User>{};

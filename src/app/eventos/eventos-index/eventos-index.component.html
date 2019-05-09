@@ -1,24 +1,64 @@
-<mat-toolbar-row>
-  <button mat-button [routerLink]="['/eventos/novo']" ><mat-icon>add</mat-icon> Novo evento</button>
-</mat-toolbar-row>
-<mat-form-field>
-  <input (keyup)="pesquisar($event.target.value)" matInput name="q" placeholder="Pesquisar eventos">
-</mat-form-field>
-<mat-tab-group mat-align-tabs="center">
-  <mat-tab label="Próximos ({{proximosEventos}})">
-    <app-eventos-list
-            [tempo]="'proximos'"
-            (eventoSelecionado)="editar($event)"
-            (listaCarregada)="proximosEventos = $event"
-            [q]="q">
-    </app-eventos-list>
-  </mat-tab>
-  <mat-tab label="Anteriores ({{eventosAnteriores}})">
-    <app-eventos-list
-            [tempo]="'anteriores'"
-            (eventoSelecionado)="editar($event)"
-            (listaCarregada)="eventosAnteriores = $event"
-            [q]="q">
-    </app-eventos-list>
-  </mat-tab>
-</mat-tab-group>
+<div class="card mb-4 wow fadeIn">
+  <!--Card content-->
+  <div class="card-body d-sm-flex justify-content-between">
+    <h4 class="mb-sm-0 pt-3">
+      <a [routerLink]="['/eventos/novo']" target="_blank">Home Page</a>
+      <span>/</span>
+      <span>Dashboard</span>
+    </h4>
+    <form class="d-flex md-form justify-content-center my-0">
+      <!-- Default input -->
+      <input name="q"
+        (keyup)="pesquisar($event.target.value)" type="search" placeholder="Pesquisar eventos" aria-label="Search" class="form-control">
+      <button class="btn btn-primary btn-sm my-0 p" type="submit">
+        <mdb-icon fas icon="search"></mdb-icon>
+      </button>
+    </form>
+  </div>
+</div>
+
+<button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Novo evento</button>
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <app-eventos-create (eventoSalvo)="basicModal.hide(); atualizar()"></app-eventos-create>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-eventos-edit
+  [evento]="evento"
+  (eventoSalvo)="atualizar()"
+  (edicaoCancelada)="atualizar()"
+  *ngIf="eventoExiste()"></app-eventos-edit>
+
+<app-eventos-list
+  [tituloJanela]="'Eventos: '+proximosEventos"
+  [tempo]="'proximos'"
+  (eventoSelecionado)="editar($event)"
+  (listaCarregada)="proximosEventos = $event"
+  [q]="q">
+</app-eventos-list>
+
+<app-eventos-list
+  [tituloJanela]="'Anteriores: '+eventosAnteriores"
+  [tempo]="'anteriores'"
+  (eventoSelecionado)="editar($event)"
+  (listaCarregada)="eventosAnteriores = $event"
+  [q]="q">
+</app-eventos-list>
+
+

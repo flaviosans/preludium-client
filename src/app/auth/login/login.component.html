@@ -1,13 +1,55 @@
-<form (ngSubmit)="logar()">
-  <mat-form-field>
-    <input matInput type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput type="password" name="password" placeholder="Senha" [(ngModel)]="user.password">
-  </mat-form-field>
-  <mat-toolbar-row>
-  <button mat-button [disabled]="loading">Login</button>
-  <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-  <div *ngIf="error">{{error}}</div>
-  </mat-toolbar-row>
+<form>
+<div class="card">
+  <div class="card-body mx-4">
+    <!--Header-->
+    <div class="text-center">
+      <h3 class="dark-grey-text mb-5">
+        <strong>Sign in</strong>
+        <div *ngIf="error">{{error}}</div>
+      </h3>
+    </div>
+    <!--Body-->
+    <div class="md-form">
+      <input [(ngModel)]="user.email" type="text" name="email"  id="Form-email1" class="form-control">
+      <label for="Form-email1">Seu e-mail</label>
+    </div>
+    <div class="md-form pb-3">
+      <input [(ngModel)]="user.password" type="password" name="password"  id="Form-pass1" class="form-control">
+      <label for="Form-pass1">Senha</label>
+      <p class="font-small blue-text d-flex justify-content-end">Forgot
+        <a href="#" class="blue-text ml-1"> Password?</a>
+      </p>
+    </div>
+    <div class="text-center mb-3">
+      <button (click)="logar()" [disabled]="loading" type="button" class="btn blue-gradient btn-block btn-rounded z-depth-1a waves-effect waves-light">Sign in</button>
+      <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+    </div>
+    <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in
+      with:</p>
+
+    <div class="row my-3 d-flex justify-content-center">
+      <!--Facebook-->
+      <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a waves-effect waves-light">
+        <i class="fab fa-facebook-f blue-text text-center"></i>
+      </button>
+      <!--Twitter-->
+      <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a waves-effect waves-light">
+        <i class="fab fa-twitter blue-text"></i>
+      </button>
+      <!--Google +-->
+      <button type="button" class="btn btn-white btn-rounded z-depth-1a waves-effect waves-light">
+        <i class="fab fa-google-plus blue-text"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!--Footer-->
+  <div class="modal-footer mx-5 pt-3 mb-1">
+    <p class="font-small grey-text d-flex justify-content-end">Not a member?
+      <a href="#" class="blue-text ml-1"> Sign Up</a>
+    </p>
+  </div>
+
+</div>
 </form>

@@ -13,7 +13,8 @@ export class EventosFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.evento = <Evento>{};
+    if(!!!this.evento)
+      this.evento = <Evento>{};
   }
 
   salvar() {

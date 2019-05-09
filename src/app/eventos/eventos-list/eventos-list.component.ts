@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
-import { Evento } from 'src/app/interfaces/evento';
-import { EventoService } from 'src/app/services/evento.service';
+import { Evento } from '../../interfaces/evento';
+import { EventoService } from '../../services/evento.service';
 import {first} from 'rxjs/operators';
 
 @Component({
@@ -11,6 +11,7 @@ import {first} from 'rxjs/operators';
 export class EventosListComponent implements OnInit, OnChanges {
 
   eventos: Evento[];
+  @Input() tituloJanela: string;
   urlArgs;
   @Input() tempo: string;
   @Input() q: string;
@@ -55,7 +56,7 @@ export class EventosListComponent implements OnInit, OnChanges {
   }
 
   excluir(evento: Evento): void{
-    this.eventoService.excluirEvento(evento).subscribe(e => {
+    this.eventoService.excluirEvento(evento).subscribe(_ => {
       this.removeEventoDaLista(evento);
     });
   }
