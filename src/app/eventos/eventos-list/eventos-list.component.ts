@@ -43,9 +43,10 @@ export class EventosListComponent implements OnInit, OnChanges {
     }
   }
 
-    selecionar(evento: Evento): void {
+  selecionar(evento: Evento): void {
     this.eventoSelecionado.emit(evento);
   }
+  
 
   pesquisar(q: string): void{
     this.eventoService.obterEventos([...this.urlArgs, {prop: 'q', val: q}]).subscribe( e => {

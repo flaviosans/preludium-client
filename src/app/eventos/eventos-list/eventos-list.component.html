@@ -1,3 +1,22 @@
+
+<div class="row">
+    <div class="col-md-6 mb-4" *ngFor="let evento of eventos">
+        <mdb-card >
+            <mdb-card-body >
+            <mdb-card-title>
+                <h4>{{evento.titulo}}</h4>
+            </mdb-card-title>
+            <mdb-card-text><span>{{evento.data | date: 'dd/MM/yy - EEEE'}} -</span> {{evento.descricao}}</mdb-card-text>
+            <div class="flex-row">
+                
+                <a class="card-link" (click)="selecionar(evento)">Selecionar</a>
+                <a class="card-link" (click)="excluir(evento)">Excluir</a>
+            </div>
+            </mdb-card-body>
+        </mdb-card>
+    </div>
+</div>
+
 <!--Card-->
 <div class="card card-cascade narrower mt-5">
     <!--Card image-->
@@ -5,7 +24,7 @@
         <h4 class="h4-responsive text-white">{{tituloJanela}}</h4>
     </div>
     <!--/Card image-->
-    <!--Card content-->
+    <!--Card content--
     <div class="card-body">
         <table class="table">
             <thead class="blue-grey lighten-4">
@@ -21,8 +40,6 @@
                 <tr *ngFor="let evento of eventos">
                     <th scope="row" (click)="selecionar(evento)">Selecionar</th>
                     <td>{{evento.data | date: 'dd/MM/yy - EEEE'}}</td>
-                    <td>{{evento.titulo}}</td>
-                    <td>{{evento.valor}}</td>
                     <td (click)="excluir(evento)">Excluir</td>
                 </tr>
             </tbody>
