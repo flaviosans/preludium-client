@@ -7,7 +7,7 @@ import {AuthenticationService} from "../services/authentication.service";
   styleUrls: ['./menu-principal.component.css']
 })
 export class MenuPrincipalComponent implements OnInit {
-
+  itens: any;
 
   constructor(private authenticationService: AuthenticationService) {  }
 

@@ -22,11 +22,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.user = <User>{};
-    this.authenticationService.logout();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  logar(){
+  logar() {
     this.submitted = true;
 
     this.loading = true;
