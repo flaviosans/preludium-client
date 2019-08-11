@@ -1,10 +1,10 @@
 <mat-toolbar-row>
   <button mat-button [routerLink]="['/eventos/novo']" ><mat-icon>add</mat-icon> Novo evento</button>
+  <span class="espaco"></span>
+  <mat-form-field>
+    <input (keyup)="pesquisar($event.target.value)" matInput name="Pesquisar data" placeholder="Pesquisar">
+  </mat-form-field>
 </mat-toolbar-row>
-
-<mat-form-field>
-  <input (keyup)="pesquisar($event.target.value)" matInput name="Pesquisar data" placeholder="Data">
-</mat-form-field>
 
 <mat-tab-group mat-align-tabs="center">
   <mat-tab *ngFor="let mes of meses" label="{{ mes | date: 'MMMM'}}">
