@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Evento } from '../../interfaces/evento';
+import { Evento } from 'src/app/interfaces/evento';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eventos-index',
@@ -10,27 +11,24 @@ export class EventosIndexComponent implements OnInit {
   evento: Evento;
   q: string;
   hoje: Date = new Date();
-  proximosEventos: number;
-  eventosAnteriores: number;
+  meses = new Array();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(){ }
+  ngOnInit() {
+    this.gerarMeses();
+  }
 
   editar(evento: Evento): void{
-    this.evento = evento;
+    this.router.navigate(['/eventos/editar', evento.id]);
   }
 
+  gerarMeses(){
+    for (let i = 0; i < 12; i++) {
+      this.meses.push( new Date(this.hoje.getFullYear(), (this.hoje.getMonth() + i) % 12));
+    }
+  }
   pesquisar(q: string): void {
     this.q = q;
-  }
-
-  atualizar(){
-    this.evento = <Evento>{};
-    this.pesquisar('');
-  }
-
-  eventoExiste(): boolean{
-    return !!this.evento && !!this.evento.id;
   }
 }

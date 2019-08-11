@@ -11,7 +11,7 @@ const httpOptions = {
     {'Content-Type': 'application/json' }
   )
 };
-class UrlArg{
+class UrlArg {
     prop: string;
     val: string | number;
 }
@@ -19,19 +19,19 @@ class UrlArg{
 @Injectable({
   providedIn: 'root'
 })
-export class EventoService{
+export class EventoService {
   constructor(private http: HttpClient) { }
 
   obterEventos(urlArgs: UrlArg[]): Observable<Evento[]> {
     let novaUrl = url;
-    if(urlArgs.length > 0) {
+    if (urlArgs.length > 0) {
         novaUrl += '?';
         urlArgs.forEach(element => {
             if (element.val !== undefined) {
                 novaUrl += `${element.prop}=${element.val}&`;
             }
         });
-        novaUrl = novaUrl.substr(0, novaUrl.length-1);
+        novaUrl = novaUrl.substr(0, novaUrl.length - 1);
     }
     return this.http.get<Evento[]>(novaUrl, httpOptions);
   }
@@ -40,18 +40,18 @@ export class EventoService{
     return this.http.get<Evento>(url + id, httpOptions);
   }
 
-  salvarEvento(evento: Evento){
+  salvarEvento(evento: Evento) {
     return this.http.post<Evento>(url, evento, httpOptions).pipe(
         tap((evento: Evento) => console.log(`Evento ${evento.id}`)),
         catchError(this.handleError<Evento>('addEvento'))
     );
   }
 
-  alterarEvento(evento: Evento){
+  alterarEvento(evento: Evento) {
     return this.http.put<Evento>(url + evento.id, evento);
   }
 
-  excluirEvento(evento: Evento){
+  excluirEvento(evento: Evento) {
     return this.http.delete<Evento>(url + evento.id);
   }
 

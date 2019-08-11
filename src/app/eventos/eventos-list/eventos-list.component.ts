@@ -1,7 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
-import { Evento } from '../../interfaces/evento';
-import { EventoService } from '../../services/evento.service';
-import {first} from 'rxjs/operators';
+import { Evento } from 'src/app/interfaces/evento';
+import { EventoService } from 'src/app/services/evento.service';
 
 @Component({
   selector: 'app-eventos-list',
@@ -11,9 +10,9 @@ import {first} from 'rxjs/operators';
 export class EventosListComponent implements OnInit, OnChanges {
 
   eventos: Evento[];
-  @Input() tituloJanela: string;
   urlArgs;
   @Input() tempo: string;
+  @Input() mes: string;
   @Input() q: string;
   @Output() eventoSelecionado = new EventEmitter();
   @Output() eventoExcluido = new EventEmitter();
@@ -24,11 +23,12 @@ export class EventosListComponent implements OnInit, OnChanges {
 
   ngOnInit(){
     this.urlArgs = [
-        { prop: 'tempo', val: this.tempo }
+        { prop: 'tempo', val: this.tempo },
+        { prop: 'mes', val: this.mes },
     ];
 
     this.eventoService.obterEventos(this.urlArgs)
-        .pipe(first()).subscribe( e => {
+        .subscribe( (e: Evento[]) => {
       this.eventos = e;
       this.listaCarregada.emit(e.length);
     });
@@ -46,7 +46,6 @@ export class EventosListComponent implements OnInit, OnChanges {
   selecionar(evento: Evento): void {
     this.eventoSelecionado.emit(evento);
   }
-  
 
   pesquisar(q: string): void{
     this.eventoService.obterEventos([...this.urlArgs, {prop: 'q', val: q}]).subscribe( e => {
@@ -56,7 +55,7 @@ export class EventosListComponent implements OnInit, OnChanges {
     });
   }
 
-  excluir(evento: Evento): void{
+  excluir(evento: Evento): void {
     this.eventoService.excluirEvento(evento).subscribe(_ => {
       this.removeEventoDaLista(evento);
     });
