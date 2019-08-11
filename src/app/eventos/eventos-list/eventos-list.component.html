@@ -1,4 +1,4 @@
-<mat-list role="list">
+<mat-list role="list" *ngIf="eventos && eventos.length > 0; else semEventos">
   <mat-list-item *ngFor="let evento of eventos" role="listitem">
     <h2 mat-line>{{evento.data | date: 'dd/MM/yy'}}</h2>
     <small mat-line>{{evento.data | date: 'EEEE'}}</small>
